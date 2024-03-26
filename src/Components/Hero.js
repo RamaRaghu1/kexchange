@@ -1,55 +1,45 @@
-import React, { useEffect } from 'react';
-// import axios from 'axios';
-
-const Hero = () => {
-
-
-    useEffect(() => {
-        fetchData();
-    }, [])
+import React from 'react';
+import img1 from "../assets/slideimages/img1.jpg";
+import img2 from "../assets/slideimages/img2.jpg"
+import img3 from "../assets/slideimages/img3.jpg"
+import img4 from "../assets/slideimages/img4.jpg";
+import Slider from "react-slick";
 
 
-const fetchData=()=>{
-    const apiUrl = 'https://example.com/api/data';
+const Hero=()=>{
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 1000,
+    cssEase: "linear"
+  };
 
 
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer YourAuthTokenHere'
-    };
-    
-    
-    fetch(apiUrl, {
-      method: 'GET', 
-      headers: headers,
-    })
-      .then(response => {
-       
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-     
-        return response.json();
-      })
-      .then(data => {
-    
-        console.log(data);
-      })
-      .catch(error => {
-       
-        console.error('There was a problem with the fetch operation:', error);
-      });
-    
+  return (
+<>
+<div className='slider-container'>
+    <Slider {...settings}>
+    <div>
+      <img src={img1}/>
+    </div>
+    <div>
+    <img src={img2}/>
+    </div>
+   
+    <div>
+    <img src={img4}/>
+    </div>
+   
+  </Slider>
+
+  </div>
+ 
+  </>
+  )
 }
-
-
-
-  
-    return (
-        <div>
-            <p className='text-3xl text-white'>Hero</p>
-        </div>
-    )
-}
-
-export default Hero
+export default Hero;

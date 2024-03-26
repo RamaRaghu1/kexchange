@@ -1,51 +1,67 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios'
+import React, {useContext } from 'react';
+import { DataContext } from '../Context/dataContext';
 
 const Table = () => {
-const [data,setData]=useState([]);
-useEffect(()=>{
-fetchData()
-},[])
+const data=useContext(DataContext)
+// console.log(data)
 
-const fetchData = async()=>{
- const info= await fetch('https://bxnzaopdi.kairaaexchange.com/api/v1/pair-list');
-//  let newData = info.data;
-const newData = await info.json();
- setData(newData.data);
 
-}
-
+let newData= data.data.filter((dt)=>dt.secondcurrency==="inr");
+console.log(newData)
 
   return (
-    <div className=''>
-      <table border="1">
-        <thead>
-        <tr >
-          <td>Pair</td>
-          <td>Last Price</td>
-          <td>24h Change</td>
-          <td>24h High</td>
-          <td>24h Low</td>
-          <td>24h Volume</td>
-          <td>Start Trade</td>
-        </tr>
-        </thead>
-        <tbody>
-        {data.length>0 &&data.map((dt)=> 
-    <tr>
-      <td>{dt.pair.toUpperCase()}</td>
-      <td>{dt.lastprice.toFixed(2)}</td>
-         <td>{dt.change.toFixed(2)}%</td>
-          <td>{dt.high}</td>
-          <td>{dt.low}</td>
-          <td>{dt.volume.toFixed(2)}</td>
-          <td>Start Trade</td>
-     </tr>
-  )} 
-     </tbody> 
+    <>
+   <h2 className='text-3xl font-bold text-center p-4'>Market trend</h2>
+  <div className='bg-black text-white m-auto'>
+    <table className='table-fixed'>
+      <thead>
+      <tr >
+        <td className='w-2/12
+         p-8 m-4'>Pair</td>
+        <td className='w-1/12
+         p-8 m-4'>Last Price</td>
+        <td className='w-2/12
+         p-8 m-4'>24h Change</td>
+        <td className='w-1/12
+         p-8 m-4'>24h High</td>
+        <td className='w-1/12
+         p-8 m-4'>24h Low</td>
+        <td className='w-1/12
+         p-8 m-4'>24h Volume</td>
+        <td className='w-2/12
+         p-8 m-4'>Start Trade</td>
+      </tr>
+      </thead>
+      <tbody>
+      {newData.length>0 && newData.map((dt)=> {
+         const isChangeHigher= dt.change >=0? true: false;
+        return(
+         
+  <tr>
+    <td className='w-3/12
+         p-8 m-4'><p><img src={dt.logo} className='w-8 h-8 inline-block'/> {dt.pair.toUpperCase()}</p></td>
+    <td className={`w-1/12
+         p-8 m-4  ${isChangeHigher ?  "text-green-500" : "text-red-500"}`}>{dt.lastprice.toFixed(2)}</td>
+       <td className='w-1/12
+         p-8 m-4'>{dt.change.toFixed(2)}%</td>
+        <td className='w-1/12
+         p-8 m-4'>{dt.high}</td>
+        <td className='w-1/12
+         p-8 m-4'>{dt.low}</td>
+        <td className='w-1/12
+         p-8 m-4'>{dt.volume.toFixed(2)}</td>
+        <td className='w-2/12
+        p-4 '><button className='border border-blue-500 px-4 py-2 rounded-lg mx-2'>Trade</button></td>
+   </tr>
+   )
+  }
+   )} 
+   </tbody> 
   
-      </table>
-    </div>
+    </table>
+  </div>
+ 
+  </>
   )
 }
 

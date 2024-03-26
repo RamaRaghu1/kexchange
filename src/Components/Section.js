@@ -65,15 +65,18 @@ const data=[
 
 
   return (
-    <div className='text-white text-sm flex flex-row flex-wrap justify-between p-12 '>
-        <h2>Build Your Crypto Portfolio</h2>
+    <div className='py-4'>
+        <h2 className='text-center font-bold text-3xl'>Build Your Crypto Portfolio</h2>
+        <div className='text-white text-sm flex flex-row flex-wrap justify-between p-12 '>
       {data.length >0 &&  data.map((dt)=>{
       return  <div className='w-64 h-[300px] rounded-xl p-4 bg-[#061121] space-y-3 m-4'>
         <img src={dt.img} className='pb-8'/>
         <p className='text-lg'>{dt.heading}</p>
         <p>{dt.para}</p>
         </div>
+       
       })}
+       </div>
     </div>
   )
 
