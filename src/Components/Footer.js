@@ -46,7 +46,7 @@ const Footer = () => {
    </div>
    </div>
    <div>
-    <p className='text-white'>© Copyright 2024 - KAIRAA Exchange</p>
+    <p className='text-white text-center text-sm p-2'>© Copyright 2024 - KAIRAA Exchange</p>
     <div>
         
     </div>

@@ -7,7 +7,7 @@ const data=useContext(DataContext)
 
 
 let newData= data.data.filter((dt)=>dt.secondcurrency==="inr");
-console.log(newData)
+// console.log(newData)
 
   return (
     <>
@@ -40,10 +40,10 @@ console.log(newData)
   <tr>
     <td className='w-3/12
          p-8 m-4'><p><img src={dt.logo} className='w-8 h-8 inline-block'/> {dt.pair.toUpperCase()}</p></td>
-    <td className={`w-1/12
-         p-8 m-4  ${isChangeHigher ?  "text-green-500" : "text-red-500"}`}>{dt.lastprice.toFixed(2)}</td>
-       <td className='w-1/12
-         p-8 m-4'>{dt.change.toFixed(2)}%</td>
+    <td className='w-3/12
+         p-8 m-4'>{dt.lastprice.toFixed(2)}</td>
+       <td className={`w-1/12
+         p-8 m-4  ${isChangeHigher ?  "text-green-500" : "text-red-500"}`}>{dt.change.toFixed(2)}%</td>
         <td className='w-1/12
          p-8 m-4'>{dt.high}</td>
         <td className='w-1/12

@@ -8,6 +8,7 @@ import Section from "./Components/Section"
 import Faq from "./Components/Faq";
 import Footer from "./Components/Footer";
 import Hero from "./Components/Hero";
+import Converter from "./Components/Converter";
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
   <Hero/>
   <Para/>
   <Table/>
+  <Converter/>
   <Section/>
-<Faq/>
+{/* <Faq/> */}
 <Footer/>
 </DataProvider>
 </div>
